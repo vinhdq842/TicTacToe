@@ -1,4 +1,4 @@
-package com.quangvinh.tic.tac.toe;
+package com.soe.tictactoe;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,26 +9,28 @@ import java.net.Socket;
  * @author SOE
  */
 
-public class GameServer implements Runnable {
+public class GameServer {
     private static final int PORT = 8420;
-    private static ServerSocket server;
-    private static Socket client_1, client_2;
-    private static Game game;
-    private static int curTurn = 1;
+    private ServerSocket server;
+    private Socket clientX, clientO;
+    private Game game;
+    private int curTurn = 1;
 
     public static void main(String[] args) {
-        game = new Game();
-        new Thread(new GameServer()).start();
+        new GameServer().start();
     }
 
-    @Override
-    public void run() {
+    public GameServer(){
+        game = new Game();
+    }
+
+    public void start() {
         try {
             server = new ServerSocket(GameServer.PORT);
-            client_1 = server.accept();
-            client_2 = server.accept();
-            ClientProcess cp1 = new ClientProcess(client_1, 1);
-            ClientProcess cp2 = new ClientProcess(client_2, 2);
+            clientX = server.accept();
+            clientO = server.accept();
+            ClientProcess cp1 = new ClientProcess(clientX, 1);
+            ClientProcess cp2 = new ClientProcess(clientO, 2);
             cp1.setPair(cp2);
             cp2.setPair(cp1);
             cp1.process();

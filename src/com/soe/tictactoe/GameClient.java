@@ -1,4 +1,4 @@
-package com.quangvinh.tic.tac.toe;
+package com.soe.tictactoe;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ import java.net.Socket;
 
 public class GameClient implements Runnable, ActionListener {
     private static final int PORT = 8420;
-    private static final String host = "localhost";
+    private static final String host = "localhost"; // replace with your server hostname or ip
     Thread gameThread;
     Game game;
     Socket socket;
@@ -26,7 +26,6 @@ public class GameClient implements Runnable, ActionListener {
     int curTurn = 1;
 
     public static void main(String[] args) {
-        new GameClient(200, 200);
         new GameClient(650, 200);
     }
 

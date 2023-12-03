@@ -1,4 +1,4 @@
-package com.quangvinh.tic.tac.toe;
+package com.soe.tictactoe;
 
 import java.io.Serializable;
 
